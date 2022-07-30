@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars Random Character Generator</title>
+    <style>
+        body
+        {
+            background-image: url("https://images.unsplash.com/photo-1622793139910-e261be0b30a4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHN0YXJyeSUyMHNreXxlbnwwfHwwfHw%3D&w=1000&q=80");
+            display: block;
+        }
+        h1
+        {
+            text-align: center;
+            text-decoration: dotted;
+            font-family: 'Times New Roman', Times, serif;
+            color: whitesmoke;
+            text-shadow: 5px;
+        }
+        button
+        {
+            display: block;
+            margin: auto;
+            background-color: goldenrod; 
+            border: none;
+            color: black;
+            padding: 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .button1 {border-radius: 12px;}
+        img
+        {
+            width: 300px;
+            height: 300px;
+            box-shadow: 10px 10px 10px 10px  goldenrod;
+            display: block;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1 class="name"></h1>
+    <button class="button button1"> Generate Random Character</button>
+    <br>
+    <br>
+    <img src="" class="character-img">
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <script>
+        $(document).ready(function()
+        {
+            $("button").on("click", function()
+            {
+                const RandomNumber = Math.ceil(Math.random() * 88)
+                $.get(`https://rawcdn.githack.com/akabab/starwars-api/0.2.1/api/id/${RandomNumber}.json`, 
+                function(data)
+                {
+                    $("h1.name").text(data['name'])
+                    $(".character-img").attr("src", data['image'])
+                })
+            })
+        })
+    </script>
+</body>
+</html>
